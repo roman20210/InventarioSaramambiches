@@ -1,0 +1,26 @@
+<div class="menu-container">
+    <h1>Bienvenido, {{ username }}</h1>
+
+    <!-- Menú general -->
+    <ul class="menu-list">
+        <li><a href="#">Ver inventario</a></li>
+        <li><a href="#">Buscar productos</a></li>
+    </ul>
+
+    <!-- Opciones específicas para Admin -->
+    <ul *ngIf="userRole === 'Admin'" class="admin-menu">
+        <li><a href="#">Añadir productos</a></li>
+        <li><a href="#">Editar productos</a></li>
+        <li><a href="#">Eliminar productos</a></li>
+        <li><a href="#">Gestionar usuarios</a></li>
+    </ul>
+
+    <!-- Opciones específicas para Employee -->
+    <ul *ngIf="userRole === 'Employee'" class="employee-menu">
+        <li><a href="#">Generar reporte de inventario</a></li>
+        <li><a href="#">Consultar histórico de ventas</a></li>
+    </ul>
+
+    <!-- Botón de cierre de sesión -->
+    <button (click)="logout()">Cerrar sesión</button>
+</div>

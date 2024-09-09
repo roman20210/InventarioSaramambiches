@@ -1,83 +1,167 @@
 // styles.scss
-    h1{
-      color:#007bff;
-      text-align: center;
-      &:hover{
-        color: #0056b3;
-      }
-    }
+h1 {
+  color: #007bff;
+  text-align: center;
+
+  &:hover {
+    color: #0056b3;
+  }
+}
 
 // Estilo general para el contenedor del login
 .login-container {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
-    
-    h2 {
-      margin-bottom: 20px;
-      font-size: 24px;
-      color: #333;
-      text-align: center;
-    }
-    
-    form {
-      display: flex;
-      flex-direction: column;
-      
-      div {
-        margin-bottom: 15px;
-  
-        label {
-          display: block;
-          margin-bottom: 5px;
-          font-weight: bold;
-          color: #555;
-        }
-  
-        input {
-          width: 100%;
-          padding: 10px;
-          border: 1px solid #ddd;
-          border-radius: 4px;
-          box-sizing: border-box;
-          font-size: 16px;
-          
-          &:focus {
-            border-color: #007bff;
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-          }
-        }
-      }
-      
-      button {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        background-color: #007bff;
-        color: white;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        
-        &:hover {
-          background-color: #0056b3;
-        }
-      }
-    }
-    a{
-        color :#0056b3;
-        font-weight: bold;
-    }
-    a:hover {
-        text-decoration: underline;
-        cursor: pointer;
-    }
-    
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+
+  h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
   }
-  
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    div {
+      margin-bottom: 15px;
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 16px;
+
+        &:focus {
+          border-color: #007bff;
+          outline: none;
+          box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+      }
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      background-color: #007bff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+
+  a {
+    color: #0056b3;
+    font-weight: bold;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  /* Estilos para el overlay */
+  .spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Fondo oscuro translúcido */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  /* Spinner único con puntos animados */
+  .unique-spinner {
+    display: flex;
+    justify-content: space-around;
+    width: 80px;
+    height: 80px;
+    position: relative;
+  }
+
+  .dot {
+    width: 15px;
+    height: 15px;
+    background-color: #007bff;
+    /* Color azul personalizado */
+    border-radius: 50%;
+    position: absolute;
+    animation: bounce 1.5s infinite ease-in-out;
+  }
+
+  .dot:nth-child(1) {
+    top: 0;
+    left: 50%;
+    animation-delay: -0.4s;
+    transform: translateX(-50%);
+  }
+
+  .dot:nth-child(2) {
+    top: 50%;
+    left: 100%;
+    animation-delay: -0.2s;
+    transform: translateY(-50%);
+  }
+
+  .dot:nth-child(3) {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .dot:nth-child(4) {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    animation-delay: -0.2s;
+  }
+
+  /* Animación de los puntos */
+  @keyframes bounce {
+
+    0%,
+    100% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.5);
+    }
+  }
+
+  .error-message {
+    color: red;
+    border: 1px solid red;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #ffe6e6;
+    border-radius: 5px;
+  }
+}

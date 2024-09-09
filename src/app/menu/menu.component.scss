@@ -1,0 +1,59 @@
+.menu-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #333;
+  }
+
+  .menu-list,
+  .admin-menu,
+  .employee-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin: 15px 0;
+
+      a {
+        display: inline-block;
+        text-decoration: none;
+        padding: 12px 24px;
+        border: 2px solid #007bff;
+        border-radius: 8px;
+        color: #007bff;
+        font-weight: bold;
+        transition: background 0.3s ease, color 0.3s ease;
+
+        &:hover {
+          background: #007bff;
+          color: white;
+        }
+      }
+    }
+  }
+
+  button {
+    margin-top: 30px;
+    padding: 12px 24px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background-color: #d32f2f;
+    }
+  }
+}

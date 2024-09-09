@@ -1,16 +1,31 @@
 <h1>Inventario los Saramambiches</h1>
 <div class="login-container">
-    <h2>Login</h2>
-    <form>
-      <div>
-        <label for="username">Username</label>
-        <input id="username"name="username" required>
+  <h2>Login</h2>
+    <!-- Spinner mientras se está registrando -->
+    <div *ngIf="isLoading" class="spinner-overlay">
+      <div class="unique-spinner">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
       </div>
-      <div>
-        <label for="password">Password</label>
-        <input id="password" type="password"name="password" required>
-      </div>
-      <button type="submit">Ingresar</button>
-    </form>
-    <p>¿No tienes una cuenta? <a [routerLink]="['/registro']">Regístrate aquí</a></p>
+    </div>
+      <!-- Mensaje de error -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
   </div>
+  <form (ngSubmit)="login()" *ngIf="!isLoading">
+    <div>
+      <label for="username">Username</label>
+      <input type="text" id="login-username" [(ngModel)]="loginData.username" name="username" required>
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input type="password" id="login-password" [(ngModel)]="loginData.password" name="password" required>
+    </div>
+    <button type="submit">Ingresar</button>
+  </form>
+  <p *ngIf="!isLoading">¿No tienes una cuenta? 
+    <a (click)="navigateToRegister()">Registrate aquí</a>
+  </p>
+</div>

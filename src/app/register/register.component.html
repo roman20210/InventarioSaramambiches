@@ -1,7 +1,28 @@
+<h1>Inventario los Saramambiches</h1>
 <div id="register-form">
   <h2>Registrarse</h2>
 
-  <form (ngSubmit)="register()">
+  <!-- Spinner mientras se está registrando -->
+  <div *ngIf="isLoading" class="spinner-overlay">
+    <div class="unique-spinner">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+
+  <!-- Mensaje de éxito -->
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+
+  <!-- Mensaje de error -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <form (ngSubmit)="register()" *ngIf="!isLoading">
     <label for="register-username">Usuario</label>
     <input type="text" id="register-username" [(ngModel)]="registerData.username" name="username" required>
 
@@ -21,5 +42,8 @@
 
     <button type="submit">Registrarse</button>
   </form>
-  <p>¿Ya tienes una cuenta? <a [routerLink]="['/login']">Inicia sesión aquí</a></p>
+  <!-- Enlace a login -->
+  <p *ngIf="!isLoading">¿Ya tienes una cuenta? 
+    <a (click)="navigateToLogin()">Inicia sesión aquí</a>
+  </p>
 </div>
