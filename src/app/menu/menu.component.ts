@@ -7,17 +7,21 @@ import { UserService } from '../services/user.service';  // Servicio para obtene
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  userRole: string = '';  // Rol del usuario
-  username: string = '';  // Nombre de usuario para mostrar
+  // Rol del usuario
+  userRole: string = '';
+  // Nombre de usuario para mostrar
+  username: string = '';
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userRole = this.userService.getUserRole() || '';  // Obtener el rol del usuario
-    this.username = this.userService.getUsername() || '';  // Obtener el nombre del usuario
+    // Obtener el rol del usuario
+    this.userRole = this.userService.getUserRole() || '';
+    // Obtener el nombre del usuario
+    this.username = this.userService.getUsername() || '';
   }
-
+  // Método para cerrar sesión
   logout() {
-    this.userService.logout();  // Método para cerrar sesión
+    this.userService.logout();
   }
 }

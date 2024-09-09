@@ -27,9 +27,11 @@ export class RegisterComponent {
     // Suscribirse a los eventos de navegación
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
-        this.isLoading = true;  // Mostrar el spinner cuando inicia la navegación
+        // Mostrar el spinner cuando inicia la navegación
+        this.isLoading = true;  
       } else if (event instanceof NavigationEnd) {
-        this.isLoading = false;  // Ocultar el spinner cuando termina la navegación
+        // Ocultar el spinner cuando termina la navegación
+        this.isLoading = false;  
       }
     });
   }
@@ -40,7 +42,8 @@ export class RegisterComponent {
 
   // Método para enviar el formulario de registro
   register() {
-    this.isLoading = true;  // Mostrar el spinner al iniciar el registro
+     // Mostrar el spinner al iniciar el registro
+    this.isLoading = true; 
 
     const userPayload = {
       Username: this.registerData.username,
@@ -60,21 +63,26 @@ export class RegisterComponent {
         this.isLoading = false;
         this.successMessage = 'Usuario registrado exitosamente';
         setTimeout(() => {
-          this.router.navigate(['/login']);  // Redirigir al login después del registro
-        }, 2000);  // Retraso de 2 segundos antes de redirigir
+          // Redirigir al login después del registro
+          this.router.navigate(['/login']);
+          // Retraso de 2 segundos antes de redirigir
+        }, 2000);  
       },
       error: (error) => {
         console.error('Error al registrar:', error);
-        this.errorMessage = error.error;  // Mostrar el error devuelto por el backend
+        this.errorMessage = error.error;
+        // Mostrar el error devuelto por el backend  
         this.isLoading = false;
       }
     });
   }
   // Método para manejar el clic en el enlace de login
   navigateToLogin() {
-    this.isLoading = true;  // Mostrar el spinner cuando se hace clic en el enlace
+    this.isLoading = true;
+    // Mostrar el spinner cuando se hace clic en el enlace  
     setTimeout(() => {
       this.router.navigate(['/login']);
-    }, 400);  // Retraso de 2 segundos para mostrar el spinner
+      // Retraso de 2 segundos para mostrar el spinner
+    }, 400);  
   }
 }

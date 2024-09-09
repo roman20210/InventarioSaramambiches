@@ -7,9 +7,12 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrlRegister = 'http://localhost:5251/Users/register';  // URL del endpoint de registro
-  private apiUrlLogin = 'http://localhost:5251/Users/LogIn';  // URL del endpoint de login
-  private currentUserKey = 'currentUser';  // Clave para almacenar el usuario en localStorage
+    // URL del endpoint de registro
+  private apiUrlRegister = 'http://localhost:5251/Users/register';
+  // URL del endpoint de login
+  private apiUrlLogin = 'http://localhost:5251/Users/LogIn';  
+  // Clave para almacenar el usuario en localStorage
+  private currentUserKey = 'currentUser';  
 
   constructor(private http: HttpClient,private router: Router) {}
 
@@ -74,7 +77,8 @@ export class UserService {
   getProtectedData(): Observable<any> {
     const token = this.getToken();
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`  // Adjuntar el token al header
+      // Adjuntar el token al header
+      'Authorization': `Bearer ${token}`  
     });
 
     return this.http.get('http://localhost:5251/protected-endpoint', { headers });
