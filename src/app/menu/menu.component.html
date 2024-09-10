@@ -1,26 +1,39 @@
-<div class="menu-container">
-    <h1>Bienvenido, {{ username }}</h1>
+<div class="layout">
+    <!-- Contenedor del botón de hamburguesa -->
+    <div class="header">
+        <button class="toggle-button" (click)="toggleSidebar()">
+            &#9776; <!-- Símbolo de hamburguesa -->
+        </button>
+        <h2 class="header-title">Menú</h2>
+    </div>
 
-    <!-- Menú general -->
-    <ul class="menu-list">
-        <li><a href="#">Ver inventario</a></li>
-        <li><a href="#">Buscar productos</a></li>
-    </ul>
+    <!-- Barra lateral -->
+    <div class="sidebar" [ngClass]="{'hidden': isSidebarHidden}">
+        <ul class="menu-list">
+            <li><a [routerLink]="['/menu/inventario']">Ver inventario</a></li>
+            <li><a [routerLink]="['/menu/buscar-productos']">Buscar productos</a></li>
+        </ul>
 
-    <!-- Opciones específicas para Admin -->
-    <ul *ngIf="userRole === 'Admin'" class="admin-menu">
-        <li><a href="#">Añadir productos</a></li>
-        <li><a href="#">Editar productos</a></li>
-        <li><a href="#">Eliminar productos</a></li>
-        <li><a href="#">Gestionar usuarios</a></li>
-    </ul>
+        <!-- Opciones específicas para Admin -->
+        <ul *ngIf="userRole === 'Admin'" class="admin-menu">
+            <li><a [routerLink]="['/menu/anadir-productos']">Añadir productos</a></li>
+            <li><a [routerLink]="['/menu/editar-productos']">Editar productos</a></li>
+            <li><a [routerLink]="['/menu/eliminar-productos']">Eliminar productos</a></li>
+            <li><a [routerLink]="['/menu/gestionar-usuarios']">Gestionar usuarios</a></li>
+        </ul>
 
-    <!-- Opciones específicas para Employee -->
-    <ul *ngIf="userRole === 'Employee'" class="employee-menu">
-        <li><a href="#">Generar reporte de inventario</a></li>
-        <li><a href="#">Consultar histórico de ventas</a></li>
-    </ul>
+        <!-- Opciones específicas para Employee -->
+        <ul *ngIf="userRole === 'Employee'" class="employee-menu">
+            <li><a [routerLink]="['/menu/reporte-inventario']">Generar reporte de inventario</a></li>
+            <li><a [routerLink]="['/menu/historico-ventas']">Consultar histórico de ventas</a></li>
+        </ul>
 
-    <!-- Botón de cierre de sesión -->
-    <button (click)="logout()">Cerrar sesión</button>
+        <!-- Botón de cierre de sesión -->
+        <button class="logout-button" (click)="logout()">Cerrar sesión</button>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <router-outlet></router-outlet>
+    </div>
 </div>

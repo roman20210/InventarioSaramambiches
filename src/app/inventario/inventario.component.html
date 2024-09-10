@@ -1,0 +1,23 @@
+<div class="inventario-container">
+    <h2>Inventario de productos</h2>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre del producto</th>
+          <th>Stock</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of inventario">
+          <td>{{ producto.id }}</td>
+          <td>{{ producto.nombre }}</td>
+          <td>{{ producto.stock }}</td>
+          <td>{{ producto.precio | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -36,7 +36,6 @@ export class LoginComponent {
     };
     // Reiniciar los mensajes de éxito/error al intentar logear
     this.errorMessage = '';
-    this.isLoading = true;
     this.UserLoginService.loginUser(userLoginPayload).subscribe({
       next: (response) => {
         setTimeout(() => {
@@ -50,7 +49,7 @@ export class LoginComponent {
       },
       error: (error) => {
         // Mostrar el error devuelto por el backend
-        this.errorMessage = error.error;
+        this.errorMessage = error.error || 'Error desconocido al iniciar sesión.';
         this.isLoading = false;
       }
     });
