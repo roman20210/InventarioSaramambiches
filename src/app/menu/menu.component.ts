@@ -11,6 +11,7 @@ export class MenuComponent implements OnInit {
   userRole: string = '';
   // Nombre de usuario para mostrar
   username: string = '';
+  isSidebarHidden: boolean = false;  // Estado de la barra lateral
 
   constructor(private userService: UserService) { }
 
@@ -19,6 +20,9 @@ export class MenuComponent implements OnInit {
     this.userRole = this.userService.getUserRole() || '';
     // Obtener el nombre del usuario
     this.username = this.userService.getUsername() || '';
+  }
+  toggleSidebar() {
+    this.isSidebarHidden = !this.isSidebarHidden;  // Cambiar entre mostrar/ocultar la barra lateral
   }
   // Método para cerrar sesión
   logout() {
