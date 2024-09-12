@@ -1,27 +1,31 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../services/product.service';
+import { Product } from '../models/product.model';
 
 @Component({
-  selector: 'app-inventario',
+  selector: 'app-ver-inventario',
   templateUrl: './inventario.component.html',
   styleUrls: ['./inventario.component.scss']
 })
 export class InventarioComponent implements OnInit {
+  products: Product[] = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 10;  // Productos por página seleccionados por defecto
 
-  inventario: any[] = [];  // Array para almacenar los productos del inventario
-
-  constructor() { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    // Aquí podrías hacer una llamada al servicio para obtener el inventario
-    this.loadInventario();
+    this.loadInventory();
   }
 
-  loadInventario() {
-    // Simulación de productos, puedes reemplazar esto con una llamada a un servicio
-    this.inventario = [
-      { id: 1, nombre: 'Producto A', stock: 50, precio: 25.00 },
-      { id: 2, nombre: 'Producto B', stock: 30, precio: 35.00 },
-      { id: 3, nombre: 'Producto C', stock: 20, precio: 45.00 },
-    ];
+  loadInventory(): void {
+    this.productService.getAllProducts().subscribe({
+      next: (products) => {
+        this.products = products;
+      },
+      error: (error) => {
+        console.error('Error al cargar el inventario:', error);
+      }
+    });
   }
 }

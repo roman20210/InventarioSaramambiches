@@ -5,8 +5,8 @@ import { RegisterComponent } from './register/register.component';
 import { MenuComponent } from './menu/menu.component';
 import { InventarioComponent } from './inventario/inventario.component';
 import { BuscarProductosComponent } from './buscar-productos/buscar-productos.component';
-import { AnadirProductosComponent } from './anadir-productos/anadir-productos.component'; // Admin options
-import { authGuard } from './auth.guard';  // Importa el guard
+import { AnadirProductosComponent } from './anadir-productos/anadir-productos.component';
+import { authGuard } from './auth.guard';
 import { EditarProductosComponent } from './editar-productos/editar-productos.component';
 import { EliminarProductosComponent } from './eliminar-productos/eliminar-productos.component';
 import { GestionarUsuariosComponent } from './gestionar-usuarios/gestionar-usuarios.component';

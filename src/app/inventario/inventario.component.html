@@ -1,23 +1,38 @@
-<div class="inventario-container">
-    <h2>Inventario de productos</h2>
-  
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre del producto</th>
-          <th>Stock</th>
-          <th>Precio</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let producto of inventario">
-          <td>{{ producto.id }}</td>
-          <td>{{ producto.nombre }}</td>
-          <td>{{ producto.stock }}</td>
-          <td>{{ producto.precio | currency }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+<div>
+  <br>
+  <br>
+  <br>
+
+  <!-- Selector para la cantidad de productos por página -->
+  <label for="itemsPerPage">Productos por página:</label>
+  <select id="itemsPerPage" [(ngModel)]="itemsPerPage">
+    <option [value]="10">10</option>
+    <option [value]="20">20</option>
+    <option [value]="50">50</option>
+  </select>
+</div>
+
+<!-- Tabla de productos -->
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Categoría</th>
+      <th>Precio</th>
+      <th>Stock</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.price | currency }}</td>
+      <td>{{ product.stock }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Componente de paginación -->
+<pagination-controls (pageChange)="currentPage = $event"></pagination-controls>

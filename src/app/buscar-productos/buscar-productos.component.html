@@ -1,1 +1,43 @@
-<p>buscar-productos works!</p>
+<div class="search-product-container">
+    <h2>Buscar Productos</h2>
+  
+    <!-- Formulario de búsqueda -->
+    <div class="form-group">
+      <label for="keyword">Palabra Clave</label>
+      <input type="text" id="keyword" [(ngModel)]="keyword" placeholder="Introduce palabra clave para buscar" />
+      <button (click)="onSearch()">Buscar</button>
+    </div>
+  
+    <!-- Resultados de la búsqueda -->
+    <div *ngIf="products.length > 0">
+      <h3>Resultados de la búsqueda</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Categoría</th>
+            <th>Cantidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price | currency }}</td>
+            <td>{{ product.category }}</td>
+            <td>{{ product.stock }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Si no se encuentran resultados -->
+    <div *ngIf="products.length === 0 && searchExecuted">
+      <p>No se encontraron productos con la palabra clave "{{ keyword }}".</p>
+    </div>
+  </div>
+  

@@ -15,7 +15,8 @@ import { EliminarProductosComponent } from './eliminar-productos/eliminar-produc
 import { GestionarUsuariosComponent } from './gestionar-usuarios/gestionar-usuarios.component';
 import { ReporteInventarioComponent } from './reporte-inventario/reporte-inventario.component';
 import { HistoricoVentasComponent } from './historico-ventas/historico-ventas.component';
-
+import { CommonModule } from '@angular/common'; // Importar CommonModule
+import { NgxPaginationModule } from 'ngx-pagination'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,9 +36,12 @@ import { HistoricoVentasComponent } from './historico-ventas/historico-ventas.co
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    NgxPaginationModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports:[InventarioComponent]
 })
 export class AppModule { }

@@ -2,85 +2,85 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-    // URL del endpoint de registro
-  private apiUrlRegister = 'http://localhost:5251/Users/register';
-  // URL del endpoint de login
-  private apiUrlLogin = 'http://localhost:5251/Users/LogIn';  
-  // Clave para almacenar el usuario en localStorage
-  private currentUserKey = 'currentUser';  
+    private apiUrl = 'http://localhost:5251/Users'; // URL base para obtener usuarios
+    private currentUserKey = 'currentUser';
 
-  constructor(private http: HttpClient,private router: Router) {}
+    constructor(private http: HttpClient, private router: Router) {}
 
-  // Método para registrar un usuario
-  registerUser(userData: any): Observable<any> {
-    return this.http.post(this.apiUrlRegister, userData);
-  }
+    // Método para registrar un usuario
+    registerUser(userData: any): Observable<any> {
+        return this.http.post(`${this.apiUrl}/register`, userData);
+    }
 
-  // Método para logear un usuario
-  loginUser(userData: any): Observable<any> {
-    return this.http.post(this.apiUrlLogin, userData).pipe(
-      tap((response: any) => {
-        if (response && response.token) {
-          // Almacena el token y otros datos del usuario en localStorage
-          localStorage.setItem(this.currentUserKey, JSON.stringify({
-            username: response.username,
-            role: response.role,
-            token: response.token
-          }));
-        }
-      })
-    );
-  }
+    // Método para logear un usuario
+    loginUser(userData: any): Observable<any> {
+        return this.http.post(`${this.apiUrl}/login`, userData).pipe(
+            tap((response: any) => {
+                if (response && response.token) {
+                    localStorage.setItem(this.currentUserKey, JSON.stringify({
+                        username: response.username,
+                        role: response.role,
+                        token: response.token
+                    }));
+                }
+            })
+        );
+    }
 
-  // Método para obtener el rol del usuario
-  getUserRole(): string | null {
-    const user = this.getCurrentUser();
-    return user ? user.role : null;
-  }
+    // Método para obtener todos los usuarios
+    getUsers(page: number, itemsPerPage: number): Observable<User[]> {
+        return this.http.get<User[]>(`${this.apiUrl}/list?page=${page}&size=${itemsPerPage}`);
+    }
 
-  // Método para obtener el nombre del usuario
-  getUsername(): string | null {
-    const user = this.getCurrentUser();
-    return user ? user.username : null;
-  }
+    // Método para obtener el rol del usuario
+    getUserRole(): string | null {
+        const user = this.getCurrentUser();
+        return user ? user.role : null;
+    }
 
-  // Método para cerrar sesión
-  logout(): any {
-    localStorage.removeItem(this.currentUserKey);  // Eliminar los datos del usuario
-    return this.router.navigate(['/login']);
-  }
+    // Método para obtener el nombre del usuario
+    getUsername(): string | null {
+        const user = this.getCurrentUser();
+        return user ? user.username : null;
+    }
 
-  // Método para verificar si el usuario está autenticado (tiene un token)
-  isAuthenticated(): boolean {
-    const user = this.getCurrentUser();
-    return user && user.token ? true : false;
-  }
+    // Método para cerrar sesión
+    logout(): any {
+        localStorage.removeItem('token');
+        return this.router.navigate(['/login']);
+    }
 
-  // Obtener el token del usuario actual
-  getToken(): string | null {
-    const user = this.getCurrentUser();
-    return user ? user.token : null;
-  }
+    // Método para verificar si el usuario está autenticado (tiene un token)
+    isAuthenticated(): boolean {
+        const user = this.getCurrentUser();
+        return user && user.token ? true : false;
+    }
 
-  // Método para obtener los detalles del usuario almacenados en localStorage
-  private getCurrentUser(): any {
-    const userJson = localStorage.getItem(this.currentUserKey);
-    return userJson ? JSON.parse(userJson) : null;
-  }
+    // Obtener el token del usuario actual
+    getToken(): string | null {
+        const user = this.getCurrentUser();
+        return user ? user.token : null;
+    }
 
-  // Método para realizar solicitudes protegidas (adjuntando el token en los headers)
-  getProtectedData(): Observable<any> {
-    const token = this.getToken();
-    const headers = new HttpHeaders({
-      // Adjuntar el token al header
-      'Authorization': `Bearer ${token}`  
-    });
+    // Método para obtener los detalles del usuario almacenados en localStorage
+    private getCurrentUser(): any {
+        const userJson = localStorage.getItem(this.currentUserKey);
+        return userJson ? JSON.parse(userJson) : null;
+    }
 
-    return this.http.get('http://localhost:5251/protected-endpoint', { headers });
-  }
+    // Método para realizar solicitudes protegidas (adjuntando el token en los headers)
+    getProtectedData(): Observable<any> {
+        const token = this.getToken();
+        const headers = new HttpHeaders({
+            'Authorization': `Bearer ${token}`
+        });
+
+        return this.http.get('http://localhost:5251/protected-endpoint', { headers });
+    }
 }

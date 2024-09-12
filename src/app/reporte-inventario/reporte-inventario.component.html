@@ -1,1 +1,16 @@
-<p>reporte-inventario works!</p>
+<h2>Generar Reporte de Inventario</h2>
+
+<div class="form-group">
+    <label for="format">Seleccione el formato del reporte:</label>
+    <select id="format" [(ngModel)]="selectedFormat">
+        <option value="pdf">PDF</option>
+        <option value="xlsx">Excel</option>
+    </select>
+</div>
+
+<button (click)="downloadReport()" class="btn btn-primary">Generar Reporte</button>
+
+<!-- Mensaje de estado -->
+<div *ngIf="message" class="message">
+    {{ message }}
+</div>

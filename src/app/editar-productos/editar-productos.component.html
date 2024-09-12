@@ -1,1 +1,84 @@
-<p>editar-productos works!</p>
+<div class="edit-product-container">
+    <h2>Editar Producto</h2>
+  
+    <!-- Campo para ingresar el ID del producto -->
+    <div class="form-group">
+      <label for="id">ID del Producto</label>
+      <input type="number" id="id" [(ngModel)]="productId" name="id" required placeholder="Introduce el ID del producto" />
+      <button (click)="getProductById()">Buscar Producto</button>
+    </div>
+  
+    <!-- Formulario para editar productos, solo se muestra cuando se encuentra un producto -->
+    <form *ngIf="product" (ngSubmit)="onSubmit()" #editProductForm="ngForm">
+      <!-- Nombre del producto -->
+      <div class="form-group">
+        <label for="name">Nombre del Producto</label>
+        <input
+          type="text"
+          id="name"
+          [(ngModel)]="product.name"
+          name="name"
+          required
+          placeholder="Introduce el nombre"
+        />
+      </div>
+  
+      <!-- Descripción del producto -->
+      <div class="form-group">
+        <label for="description">Descripción</label>
+        <textarea
+          id="description"
+          [(ngModel)]="product.description"
+          name="description"
+          required
+          placeholder="Introduce la descripción"
+        ></textarea>
+      </div>
+  
+      <!-- Precio del producto -->
+      <div class="form-group">
+        <label for="price">Precio</label>
+        <input
+          type="number"
+          id="price"
+          [(ngModel)]="product.price"
+          name="price"
+          required
+          placeholder="Introduce el precio"
+        />
+      </div>
+  
+      <!-- Categoría del producto -->
+      <div class="form-group">
+        <label for="category">Categoría</label>
+        <input
+          type="text"
+          id="category"
+          [(ngModel)]="product.category"
+          name="category"
+          required
+          placeholder="Introduce la categoría"
+        />
+      </div>
+  
+      <!-- Cantidad en inventario -->
+      <div class="form-group">
+        <label for="quantity">Cantidad</label>
+        <input
+          type="number"
+          id="quantity"
+          [(ngModel)]="product.stock"
+          name="quantity"
+          required
+          placeholder="Introduce la cantidad"
+        />
+      </div>
+  
+      <!-- Botones para editar o cancelar -->
+      <div class="form-actions">
+        <button type="submit" class="btn-save" [disabled]="editProductForm.invalid">Guardar Cambios</button>
+        <button type="button" class="btn-cancel" (click)="onCancel()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+  

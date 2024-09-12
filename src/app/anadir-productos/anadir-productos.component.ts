@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../services/product.service'; // Asegúrate de tener el servicio de productos
 import { Router } from '@angular/router';
+import { Product } from '../models/product.model';
 
 @Component({
   selector: 'app-anadir-productos',
@@ -8,12 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./anadir-productos.component.scss']
 })
 export class AnadirProductosComponent {
-  product = {
+  product: Product = {
+    id: 0,
     name: '',
     description: '',
-    Stock: 0,
     price: 0,
-    category: ''
+    category: '',
+    stock: 0
   };
   
   isLoading = false;
@@ -24,7 +26,7 @@ export class AnadirProductosComponent {
 
   // Método para enviar los datos del formulario al backend
   onSubmit() {
-    if (this.product.name && this.product.description && this.product.Stock && this.product.price) {
+    if (this.product.name && this.product.description && this.product.stock && this.product.price) {
       this.isLoading = true;
       this.errorMessage = '';
       this.successMessage = '';
@@ -34,7 +36,7 @@ export class AnadirProductosComponent {
           this.successMessage = 'Producto añadido con éxito';
           this.isLoading = false;
           // Limpiar el formulario
-          this.product = { name: '', description: '', Stock: 0, price: 0, category: '' };
+          this.product = { id: 0, name: '', description: '', stock: 0, price: 0, category: '' };
         },
         error: (error) => {
           this.errorMessage = 'Error al añadir el producto. Inténtalo de nuevo.';
