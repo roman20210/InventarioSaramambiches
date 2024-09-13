@@ -5,13 +5,13 @@ import { Router } from '@angular/router';
 import { User } from '../models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class UserService {
     private apiUrl = 'http://localhost:5251/Users'; // URL base para obtener usuarios
     private currentUserKey = 'currentUser';
 
-    constructor(private http: HttpClient, private router: Router) {}
+    constructor(private http: HttpClient, private router: Router) { }
 
     // Método para registrar un usuario
     registerUser(userData: any): Observable<any> {
@@ -34,9 +34,11 @@ export class UserService {
     }
 
     // Método para obtener todos los usuarios
-    getUsers(page: number, itemsPerPage: number): Observable<User[]> {
-        return this.http.get<User[]>(`${this.apiUrl}/list?page=${page}&size=${itemsPerPage}`);
-    }
+    getUsers(page: number, itemsPerPage: number): Observable<any> {
+        const params = { page: page.toString(), pageSize: itemsPerPage.toString() };
+        return this.http.get<any>(`${this.apiUrl}/users`, { params });
+      }
+      
 
     // Método para obtener el rol del usuario
     getUserRole(): string | null {
@@ -52,14 +54,13 @@ export class UserService {
 
     // Método para cerrar sesión
     logout(): any {
-        localStorage.removeItem('token');
+        localStorage.removeItem(this.currentUserKey);
         return this.router.navigate(['/login']);
     }
 
-    // Método para verificar si el usuario está autenticado (tiene un token)
+    // Método para verificar si el usuario está autenticado
     isAuthenticated(): boolean {
-        const user = this.getCurrentUser();
-        return user && user.token ? true : false;
+        return !!this.getCurrentUser();
     }
 
     // Obtener el token del usuario actual
@@ -82,5 +83,11 @@ export class UserService {
         });
 
         return this.http.get('http://localhost:5251/protected-endpoint', { headers });
+    }
+    updateUser(userId: number, user: User): Observable<any> {
+        return this.http.put(`${this.apiUrl}/${userId}`, user);
+    }
+    deleteUser(userId: number): Observable<any> {
+        return this.http.delete(`${this.apiUrl}/${userId}`);
     }
 }

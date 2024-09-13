@@ -14,20 +14,20 @@ import { HistoricoVentasComponent } from './historico-ventas/historico-ventas.co
 import { ReporteInventarioComponent } from './reporte-inventario/reporte-inventario.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent},
   { path: 'registro', component: RegisterComponent },
   {
-    path: 'menu', component: MenuComponent, canActivate: [authGuard],
+    path: 'menu', component: MenuComponent, canActivate: [authGuard], data: { roles: ['Employee', 'Admin'] },
     children:
       [  // Rutas hijas para el contenido del menú
-        { path: 'inventario', component: InventarioComponent },
-        { path: 'buscar-productos', component: BuscarProductosComponent },
-        { path: 'anadir-productos', component: AnadirProductosComponent },
-        { path: 'editar-productos', component: EditarProductosComponent },
-        { path: 'eliminar-productos', component: EliminarProductosComponent },
-        { path: 'gestionar-usuarios', component: GestionarUsuariosComponent },
-        { path: 'historico-ventas', component: HistoricoVentasComponent },
-        { path: 'reporte-inventario', component: ReporteInventarioComponent },
+        { path: 'inventario', component: InventarioComponent, canActivate: [authGuard], data: { roles: ['Employee', 'Admin'] } },
+        { path: 'buscar-productos', component: BuscarProductosComponent, canActivate: [authGuard], data: { roles: ['Employee', 'Admin'] } },
+        { path: 'anadir-productos', component: AnadirProductosComponent, canActivate: [authGuard], data: { roles: 'Admin' } },
+        { path: 'editar-productos', component: EditarProductosComponent,canActivate: [authGuard], data: { roles: 'Admin' } },
+        { path: 'eliminar-productos', component: EliminarProductosComponent, canActivate: [authGuard], data: { roles: 'Admin' } },
+        { path: 'gestionar-usuarios', component: GestionarUsuariosComponent, canActivate: [authGuard], data: { roles: 'Admin' } },
+        { path: 'historico-ventas', component: HistoricoVentasComponent, canActivate: [authGuard], data: { roles: ['Employee', 'Admin'] } },
+        { path: 'reporte-inventario', component: ReporteInventarioComponent, canActivate: [authGuard], data: { roles: ['Employee', 'Admin'] } },
       ]
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

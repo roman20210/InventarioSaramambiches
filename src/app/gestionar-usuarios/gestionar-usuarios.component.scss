@@ -1,96 +1,217 @@
 /* Contenedor principal */
 .container {
-    padding: 20px;
-  }
-  
-  /* Estilo para el título principal */
-  h1 {
-    text-align: center;
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+/* Formulario para crear o editar usuarios */
+.user-form {
+  margin-bottom: 30px;
+  background-color: #e9ecef;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+
+  h3 {
     margin-bottom: 20px;
-  }
-  
-  /* Estilo para el formulario */
-  .form-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .form-group input,
-  .form-group select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  button {
-    display: inline-block;
-    padding: 10px 15px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Estilo para la tabla de usuarios */
-  .table-container {
-    margin-top: 30px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  table th,
-  table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
-  
-  table thead {
-    background-color: #f2f2f2;
-  }
-  
-  table th {
-    font-weight: bold;
-  }
-  
-  table tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  /* Estilo para los botones dentro de la tabla */
-  .table-container button {
-    margin: 0;
-    font-size: 14px;
-  }
-  
-  /* Estilo para el paginador */
-  .pagination-controls {
-    margin-top: 20px;
     text-align: center;
+    font-size: 1.8rem;
+    color: #333;
   }
-  
+
+  .form-group {
+    margin-bottom: 20px;
+
+    label {
+      font-size: 1rem;
+      color: #555;
+      font-weight: bold;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ced4da;
+      margin-top: 5px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #218838;
+    }
+  }
+}
+/* Mensajes de éxito y error */
+.alert {
+  font-size: 1rem;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Selector de cantidad de usuarios */
+.form-group {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+
+  label {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #555;
+  }
+
+  select {
+    padding: 5px 10px;
+    font-size: 1rem;
+    border: 2px solid #ced4da;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+  }
+}
+
+/* Estilo de la tabla */
+.table {
+  margin-top: 30px;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 15px;
+
+  thead th {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.2rem;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  tbody tr {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+  }
+
+  tbody td {
+    padding: 15px;
+    text-align: center;
+    font-size: 1rem;
+    color: #333;
+  }
+
+  td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+}
+
+/* Botones de acciones */
+button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Paginación */
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+
+  .page-item {
+    margin: 0 5px;
+  }
+
+  .page-link {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #007bff;
+    color: #007bff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .page-item.active .page-link {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .page-link:hover {
+    background-color: #0056b3;
+    color: white;
+  }
+
+  .disabled .page-link {
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    color: #6c757d;
+  }
+}

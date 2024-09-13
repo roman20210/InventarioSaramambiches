@@ -23,7 +23,7 @@
         </ul>
 
         <!-- Opciones específicas para Employee -->
-        <ul *ngIf="userRole === 'Employee'" class="employee-menu">
+        <ul *ngIf="userRole === 'Employee' || userRole === 'Admin'" class="employee-menu">
             <li><a [routerLink]="['/menu/reporte-inventario']">Generar reporte de inventario</a></li>
             <li><a [routerLink]="['/menu/historico-ventas']">Consultar histórico de ventas</a></li>
         </ul>

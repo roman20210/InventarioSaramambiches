@@ -40,7 +40,6 @@ export class LoginComponent {
       next: (response) => {
         setTimeout(() => {
           // Almacenar el token en el localStorage
-          localStorage.setItem('token', response.token);
           this.router.navigate(['/menu']);  
           // Redirigir al login después del registro
           this.isLoading = false;

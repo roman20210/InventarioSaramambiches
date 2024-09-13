@@ -59,7 +59,6 @@ export class RegisterComponent {
 
     this.userService.registerUser(userPayload).subscribe({
       next: (response) => {
-        console.log(response);
         this.isLoading = false;
         this.successMessage = 'Usuario registrado exitosamente';
         setTimeout(() => {
