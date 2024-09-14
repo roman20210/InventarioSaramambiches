@@ -1,0 +1,30 @@
+<div class="ventas-container">
+  <h2>Realizar Venta</h2>
+
+  <form [formGroup]="ventaForm" (ngSubmit)="enviarVenta()">
+    <div formArrayName="Productos">
+      <div *ngFor="let productoVendido of Productos.controls; let i = index" [formGroupName]="i" class="producto-vendido">
+        <div>
+          <label>Producto</label>
+          <select formControlName="ProductoId">
+            <option *ngFor="let producto of productos" [value]="producto.id">{{ producto.name }}</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Cantidad</label>
+          <input type="number" formControlName="Cantidad" min="1">
+        </div>
+
+        <button type="button" (click)="removerProductoVendido(i)">Eliminar</button>
+      </div>
+    </div>
+
+    <button type="button" (click)="agregarProductoVendido()">Agregar Producto</button>
+    <button type="submit">Realizar Venta</button>
+  </form>
+    <!-- Mensaje de confirmación o error -->
+    <div *ngIf="mensaje" [ngClass]="{'mensaje-exito': mensaje.tipo === 'exito', 'mensaje-error': mensaje.tipo === 'error'}">
+      {{ mensaje.texto }}
+    </div>
+</div>

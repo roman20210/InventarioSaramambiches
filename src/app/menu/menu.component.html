@@ -26,6 +26,7 @@
         <ul *ngIf="userRole === 'Employee' || userRole === 'Admin'" class="employee-menu">
             <li><a [routerLink]="['/menu/reporte-inventario']">Generar reporte de inventario</a></li>
             <li><a [routerLink]="['/menu/historico-ventas']">Consultar histórico de ventas</a></li>
+            <li><a [routerLink]="['/menu/ventas']">Vender</a></li>
         </ul>
 
         <!-- Botón de cierre de sesión -->

@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component'
-import { FormsModule } from '@angular/forms'; // Importa FormsModule
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Importa FormsModule
 import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './menu/menu.component';
 import { InventarioComponent } from './inventario/inventario.component';
@@ -16,7 +16,8 @@ import { GestionarUsuariosComponent } from './gestionar-usuarios/gestionar-usuar
 import { ReporteInventarioComponent } from './reporte-inventario/reporte-inventario.component';
 import { HistoricoVentasComponent } from './historico-ventas/historico-ventas.component';
 import { CommonModule } from '@angular/common'; // Importar CommonModule
-import { NgxPaginationModule } from 'ngx-pagination'; 
+import { NgxPaginationModule } from 'ngx-pagination';
+import { VentasComponent } from './ventas/ventas.component'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     EliminarProductosComponent,
     GestionarUsuariosComponent,
     ReporteInventarioComponent,
-    HistoricoVentasComponent
+    HistoricoVentasComponent,
+    VentasComponent
    ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     HttpClientModule,
     CommonModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

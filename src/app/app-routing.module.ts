@@ -12,6 +12,7 @@ import { EliminarProductosComponent } from './eliminar-productos/eliminar-produc
 import { GestionarUsuariosComponent } from './gestionar-usuarios/gestionar-usuarios.component';
 import { HistoricoVentasComponent } from './historico-ventas/historico-ventas.component';
 import { ReporteInventarioComponent } from './reporte-inventario/reporte-inventario.component';
+import { VentasComponent } from './ventas/ventas.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
         { path: 'gestionar-usuarios', component: GestionarUsuariosComponent, canActivate: [authGuard], data: { roles: 'Admin' } },
         { path: 'historico-ventas', component: HistoricoVentasComponent, canActivate: [authGuard], data: { roles: ['Employee', 'Admin'] } },
         { path: 'reporte-inventario', component: ReporteInventarioComponent, canActivate: [authGuard], data: { roles: ['Employee', 'Admin'] } },
+        { path: 'ventas', component: VentasComponent, canActivate: [authGuard], data: { roles: ['Employee', 'Admin'] }},
       ]
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
